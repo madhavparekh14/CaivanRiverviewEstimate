@@ -55,10 +55,22 @@
   .note-box{margin-top:10px;padding:12px 16px;background:#f8f5f0;border:1px solid var(--border);border-radius:2px;font-size:10px;color:var(--muted);line-height:1.7;letter-spacing:.04em}
   .note-box strong{color:var(--label);font-weight:400}
 
+  .siteplan-btn{margin-top:14px;width:100%;padding:13px;background:var(--accent);border:1px solid var(--accent);border-radius:2px;color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;opacity:0;animation:fadeUp .35s .05s forwards}
+  .siteplan-btn:hover{background:#75603a;border-color:#75603a;transform:translateY(-1px);box-shadow:0 4px 12px rgba(138,111,69,0.25)}
+
   .reset-btn{margin-top:20px;width:100%;padding:11px;background:transparent;border:1px solid var(--border);border-radius:2px;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;opacity:0;animation:fadeUp .35s .1s forwards}
   .reset-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
 
   .placeholder-msg{margin-top:28px;padding:24px;text-align:center;border:1px dashed var(--border);border-radius:3px;color:var(--muted);font-size:10px;letter-spacing:.1em;line-height:1.8}
+
+  /* Modal */
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);opacity:0;transition:opacity .3s}
+  .modal.active{display:flex;opacity:1}
+  .modal-content{position:relative;max-width:95vw;max-height:95vh;background:var(--surface);border-radius:3px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);animation:modalZoom .3s}
+  @keyframes modalZoom{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+  .modal-content img{display:block;max-width:100%;max-height:95vh;width:auto;height:auto}
+  .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;background:rgba(0,0,0,0.6);border:none;border-radius:50%;color:#fff;font-size:22px;line-height:1;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+  .modal-close:hover{background:rgba(0,0,0,0.8);transform:rotate(90deg)}
 </style>
 </head>
 <body>
@@ -140,7 +152,16 @@
       <div class="note-box" id="note-box" style="display:none"></div>
     </div>
 
+    <button class="siteplan-btn" onclick="openSiteplan()">📍 &nbsp; View Siteplan</button>
     <button class="reset-btn" onclick="resetAll()">↺ &nbsp; Reset All Fields</button>
+  </div>
+</div>
+
+<!-- Siteplan Modal -->
+<div class="modal" id="siteplan-modal" onclick="closeSiteplan(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeSiteplan()">&times;</button>
+    <img src="siteplan.png" alt="Site Plan">
   </div>
 </div>
 
@@ -359,6 +380,25 @@ function clearPrice() {
   document.getElementById('price-panel').classList.remove('visible');
   document.getElementById('placeholder-msg').style.display='';
 }
+
+// ── MODAL HANDLERS ────────────────────────────────────────────────
+function openSiteplan() {
+  const modal = document.getElementById('siteplan-modal');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSiteplan(event) {
+  if (event && event.target !== event.currentTarget && !event.target.classList.contains('modal-close')) return;
+  const modal = document.getElementById('siteplan-modal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSiteplan();
+});
 
 // ── EVENT HANDLERS ────────────────────────────────────────────────
 function onTypeChange() {
