@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caivan Riverview Project Pricing Calculator</title>
+<title>Project Pricing Calculator</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -60,6 +60,12 @@
 
   .reset-btn{margin-top:20px;width:100%;padding:11px;background:transparent;border:1px solid var(--border);border-radius:2px;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;opacity:0;animation:fadeUp .35s .1s forwards}
   .reset-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+
+  .disclaimer{margin-top:32px;padding:20px 24px;background:#f8f5f0;border:1px solid var(--border);border-radius:2px;opacity:0;animation:fadeUp .4s .15s forwards}
+  .disclaimer-title{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:400}
+  .disclaimer p{font-size:9px;line-height:1.8;color:var(--label);margin-bottom:10px;letter-spacing:.02em}
+  .disclaimer p:last-of-type{margin-bottom:0}
+  .disclaimer-date{font-size:8px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid rgba(138,111,69,0.15);font-style:italic}
 
   .placeholder-msg{margin-top:28px;padding:24px;text-align:center;border:1px dashed var(--border);border-radius:3px;color:var(--muted);font-size:10px;letter-spacing:.1em;line-height:1.8}
 
@@ -154,6 +160,13 @@
 
     <button class="siteplan-btn" onclick="openSiteplan()">📍 &nbsp; View Siteplan</button>
     <button class="reset-btn" onclick="resetAll()">↺ &nbsp; Reset All Fields</button>
+
+    <div class="disclaimer">
+      <div class="disclaimer-title">Important Notice</div>
+      <p>All pricing, specifications, and features displayed on this calculator are subject to change without notice. While we make every effort to maintain accurate and current information, prices may vary based on market conditions, lot availability, and other factors. This calculator is provided for informational purposes only and does not constitute a binding offer or contract.</p>
+      <p>We are committed to updating this site frequently to reflect the most current data available. However, prospective purchasers should verify all information directly with our sales representatives. Final pricing, terms, and conditions will be confirmed in writing at the time of purchase.</p>
+      <p class="disclaimer-date">E. & O.E. — Last Updated: April 2026</p>
+    </div>
   </div>
 </div>
 
